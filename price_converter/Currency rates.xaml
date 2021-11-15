@@ -286,7 +286,7 @@
                       </ui:Click>
                       <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Euro rate" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_1">
                         <ui:GetValue.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0dbce439-14fe-4345-895e-9b0ff56e0eb5" InformativeScreenshot="f409ef81887d6785bf9dadf5eb18a7b4" Selector="&lt;webctrl aaname='0.8738' tag='SPAN' /&gt;">
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0dbce439-14fe-4345-895e-9b0ff56e0eb5" InformativeScreenshot="f409ef81887d6785bf9dadf5eb18a7b4" Selector="&lt;webctrl class='ccOutputRslt' /&gt;">
                             <ui:Target.TimeoutMS>
                               <InArgument x:TypeArguments="x:Int32" />
                             </ui:Target.TimeoutMS>
