@@ -84,7 +84,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Getting CNY Label" sap:VirtualizedContainerService.HintSize="630,853" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="Data\Input_china.xlsx">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Getting CNY Label from excel file" sap:VirtualizedContainerService.HintSize="630,853" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="Data\Input_china.xlsx">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -140,7 +140,7 @@
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
     </ui:ExcelApplicationScope>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Getting EUR Label" sap:VirtualizedContainerService.HintSize="630,583" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="Data\Input_italy.xlsx">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Getting EUR Label from file" sap:VirtualizedContainerService.HintSize="630,583" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="Data\Input_italy.xlsx">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -180,7 +180,7 @@
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
     </ui:ExcelApplicationScope>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Getting TRY Label" sap:VirtualizedContainerService.HintSize="630,583" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="Data\Input_turkey.xls">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Getting TRY Label from file" sap:VirtualizedContainerService.HintSize="630,583" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="Data\Input_turkey.xls">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -238,7 +238,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser EURO" sap:VirtualizedContainerService.HintSize="512,812" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="https://x-rates.com/">
+              <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName=" Get  USD/EUR rate" sap:VirtualizedContainerService.HintSize="512,812" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="https://x-rates.com/">
                 <ui:OpenBrowser.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
@@ -305,7 +305,7 @@
                   </ActivityAction>
                 </ui:OpenBrowser.Body>
               </ui:OpenBrowser>
-              <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser CNY" sap:VirtualizedContainerService.HintSize="512,1152" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" Url="https://www.x-rates.com/calculator/?from=USD&amp;to=CNY&amp;amount=1">
+              <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Get USD/CNY rate" sap:VirtualizedContainerService.HintSize="512,1152" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" Url="https://www.x-rates.com/calculator/?from=USD&amp;to=CNY&amp;amount=1">
                 <ui:OpenBrowser.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
@@ -394,7 +394,7 @@
                   </ActivityAction>
                 </ui:OpenBrowser.Body>
               </ui:OpenBrowser>
-              <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser TRY" sap:VirtualizedContainerService.HintSize="512,1152" sap2010:WorkflowViewState.IdRef="OpenBrowser_3" Url="https://www.x-rates.com/calculator/?from=USD&amp;to=TRY&amp;amount=1">
+              <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Get USD/ TRY rate" sap:VirtualizedContainerService.HintSize="512,1152" sap2010:WorkflowViewState.IdRef="OpenBrowser_3" Url="https://www.x-rates.com/calculator/?from=USD&amp;to=TRY&amp;amount=1">
                 <ui:OpenBrowser.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>

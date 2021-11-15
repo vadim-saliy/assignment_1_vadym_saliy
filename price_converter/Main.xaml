@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1060,6254" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1060,6210" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="70">
       <x:String>System.Activities</x:String>
@@ -81,22 +81,10 @@
       <Variable x:TypeArguments="s:DateTime" Name="TodayDate" />
       <Variable x:TypeArguments="x:String" Name="FileTimeStamp" />
       <Variable x:TypeArguments="sd:DataTable" Name="OutputDT" />
-      <Variable x:TypeArguments="x:Double" Name="RateCNY">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Double" Value="6.379" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="x:Double" Name="RateTyl">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Double" Value="9.978" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Double" Default="6.379" Name="RateCNY" />
+      <Variable x:TypeArguments="x:Double" Default="9.978" Name="RateTyl" />
       <Variable x:TypeArguments="sd:DataTable" Name="DTResultSorted" />
-      <Variable x:TypeArguments="x:Double" Name="RateEuro">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Double" Value="0.8738" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Double" Default="0.8738" Name="RateEuro" />
       <Variable x:TypeArguments="x:String" Name="CnyLabel" />
       <Variable x:TypeArguments="x:String" Name="CNY" />
       <Variable x:TypeArguments="x:String" Name="TR" />
@@ -118,7 +106,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ReadRange AddHeaders="True" DataTable="[DTChina]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="338,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="Data\Input_china.xlsx">
+      <ui:ReadRange AddHeaders="True" DataTable="[DTChina]" DisplayName="Read input file with price in CNY" sap:VirtualizedContainerService.HintSize="338,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="Data\Input_china.xlsx">
         <ui:ReadRange.Range>
           <InArgument x:TypeArguments="x:String">
             <Literal x:TypeArguments="x:String" Value="" />
@@ -126,7 +114,7 @@
         </ui:ReadRange.Range>
       </ui:ReadRange>
       <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="False" AutoIncrement="False" ColumnName="Price, USD" DataTable="[DTChina]" DisplayName="Add Column &quot;Price, USD&quot;" sap:VirtualizedContainerService.HintSize="338,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" MaxLength="100" Unique="False" />
-      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DTChina]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="338,472" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="multiply the price by the exchange rate CNY/USD" DataTable="[DTChina]" DisplayName="multiply the price by the exchange rate USD/CNY" sap:VirtualizedContainerService.HintSize="338,472" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
         <ui:ForEachRow.Body>
           <ActivityAction x:TypeArguments="sd:DataRow">
             <ActivityAction.Argument>
@@ -169,8 +157,13 @@
             </Sequence>
           </ActivityAction>
         </ui:ForEachRow.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </ui:ForEachRow>
-      <ui:WriteRange AddHeaders="False" DataTable="[DTChina]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="338,115" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="Sheet1" StartingCell="A1" WorkbookPath="Data\Result.xlsx" />
+      <ui:WriteRange AddHeaders="False" DataTable="[DTChina]" DisplayName="Save the conversion result to temporary file" sap:VirtualizedContainerService.HintSize="338,115" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="Sheet1" StartingCell="A1" WorkbookPath="Data\Result.xlsx" />
     </Sequence>
     <Sequence DisplayName="Italy price conversion" sap:VirtualizedContainerService.HintSize="476,1071" sap2010:WorkflowViewState.IdRef="Sequence_16">
       <Sequence.Variables>
@@ -189,7 +182,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ReadRange AddHeaders="True" DataTable="[DTItaly]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="338,87" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="Sheet1" WorkbookPath="Data\Input_italy.xlsx">
+      <ui:ReadRange AddHeaders="True" DataTable="[DTItaly]" DisplayName="Read input file wit price in EUR" sap:VirtualizedContainerService.HintSize="338,87" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="Sheet1" WorkbookPath="Data\Input_italy.xlsx">
         <ui:ReadRange.Range>
           <InArgument x:TypeArguments="x:String">
             <Literal x:TypeArguments="x:String" Value="" />
@@ -197,7 +190,7 @@
         </ui:ReadRange.Range>
       </ui:ReadRange>
       <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="False" AutoIncrement="False" ColumnName="Price, USD" DataTable="[DTItaly]" DisplayName="Add Column &quot;Price, USD&quot;" sap:VirtualizedContainerService.HintSize="338,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_5" MaxLength="100" Unique="False" />
-      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DTItaly]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="338,472" sap2010:WorkflowViewState.IdRef="ForEachRow_5">
+      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DTItaly]" DisplayName="multiply the price by the exchange rate  USD/EUR" sap:VirtualizedContainerService.HintSize="338,472" sap2010:WorkflowViewState.IdRef="ForEachRow_5">
         <ui:ForEachRow.Body>
           <ActivityAction x:TypeArguments="sd:DataRow">
             <ActivityAction.Argument>
@@ -241,7 +234,7 @@
           </ActivityAction>
         </ui:ForEachRow.Body>
       </ui:ForEachRow>
-      <ui:AppendRange DataTable="[DTItaly]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="338,115" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="Sheet1" WorkbookPath="Data\Result.xlsx" />
+      <ui:AppendRange DataTable="[DTItaly]" DisplayName="Save the conversion result - Append Range to Result.xlsx " sap:VirtualizedContainerService.HintSize="338,115" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="Sheet1" WorkbookPath="Data\Result.xlsx" />
     </Sequence>
     <Sequence DisplayName="Turkey price conversion" sap:VirtualizedContainerService.HintSize="476,1244" sap2010:WorkflowViewState.IdRef="Sequence_18">
       <Sequence.Variables>
@@ -271,7 +264,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:ExcelReadRange AddHeaders="True" DataTable="[DTTurkey]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
+              <ui:ExcelReadRange AddHeaders="True" DataTable="[DTTurkey]" DisplayName="Read input file (.xls)  with prices in TRY" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
                 <ui:ExcelReadRange.Range>
                   <InArgument x:TypeArguments="x:String">
                     <Literal x:TypeArguments="x:String" Value="" />
@@ -283,7 +276,7 @@
           </ActivityAction>
         </ui:ExcelApplicationScope.Body>
       </ui:ExcelApplicationScope>
-      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DTTurkey]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="434,472" sap2010:WorkflowViewState.IdRef="ForEachRow_6">
+      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DTTurkey]" DisplayName="multiply the price by the exchange rate TRY/USD" sap:VirtualizedContainerService.HintSize="434,472" sap2010:WorkflowViewState.IdRef="ForEachRow_6">
         <ui:ForEachRow.Body>
           <ActivityAction x:TypeArguments="sd:DataRow">
             <ActivityAction.Argument>
@@ -329,7 +322,7 @@
           </ActivityAction>
         </ui:ForEachRow.Body>
       </ui:ForEachRow>
-      <ui:AppendRange DataTable="[DTTurkey]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="434,115" sap2010:WorkflowViewState.IdRef="AppendRange_2" SheetName="Sheet1" WorkbookPath="Data\Result.xlsx" />
+      <ui:AppendRange DataTable="[DTTurkey]" DisplayName="Save the conversion result - Append Range to Result.xlsx " sap:VirtualizedContainerService.HintSize="434,115" sap2010:WorkflowViewState.IdRef="AppendRange_2" SheetName="Sheet1" WorkbookPath="Data\Result.xlsx" />
     </Sequence>
     <Sequence DisplayName="Sort result file activity" sap:VirtualizedContainerService.HintSize="476,1310" sap2010:WorkflowViewState.IdRef="Sequence_22">
       <Sequence.Variables>
@@ -360,12 +353,12 @@
                   </InArgument>
                 </ui:ExcelReadRange.Range>
               </ui:ExcelReadRange>
-              <ui:SortDataTable ColumnName="{x:Null}" DataColumn="{x:Null}" ColumnIndex="[2]" DataTable="[DTResult]" DisplayName="Sort Data Table" sap:VirtualizedContainerService.HintSize="334,238" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Decending" OutputDataTable="[DTResultSorted]" SortOrder="Descending" />
+              <ui:SortDataTable ColumnName="{x:Null}" DataColumn="{x:Null}" ColumnIndex="[2]" DataTable="[DTResult]" DisplayName="Sort Data Table by USD price" sap:VirtualizedContainerService.HintSize="334,238" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Decending" OutputDataTable="[DTResultSorted]" SortOrder="Descending" />
             </Sequence>
           </ActivityAction>
         </ui:ExcelApplicationScope.Body>
       </ui:ExcelApplicationScope>
-      <ui:WriteRange AddHeaders="False" DataTable="[DTResultSorted]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="434,115" sap2010:WorkflowViewState.IdRef="WriteRange_6" SheetName="Sheet1" StartingCell="A1" WorkbookPath="Data\Result_sorted.xlsx" />
+      <ui:WriteRange AddHeaders="False" DataTable="[DTResultSorted]" DisplayName="Save sorted data to file" sap:VirtualizedContainerService.HintSize="434,115" sap2010:WorkflowViewState.IdRef="WriteRange_6" SheetName="Sheet1" StartingCell="A1" WorkbookPath="Data\Result_sorted.xlsx" />
       <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Delete price in original currency" sap:VirtualizedContainerService.HintSize="434,485" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_8" InstanceCachePeriod="3000" WorkbookPath="Data\Result_sorted.xlsx">
         <ui:ExcelApplicationScope.Body>
           <ActivityAction x:TypeArguments="ui:WorkbookApplication">
@@ -420,7 +413,7 @@
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="476,79" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="Data\Result.xlsx" />
+    <ui:DeleteFileX DisplayName="Delete Temporary File" sap:VirtualizedContainerService.HintSize="476,79" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="Data\Result.xlsx" />
     <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="476,249" sap2010:WorkflowViewState.IdRef="CommentOut_2">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="426,171" sap2010:WorkflowViewState.IdRef="Sequence_25">
